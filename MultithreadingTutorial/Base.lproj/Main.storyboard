@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="MultithreadingTutorial" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t6a-MO-nlh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uFQ-xR-Iyi">
+                                <rect key="frame" x="16" y="619" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Cassiny"/>
+                                    <segment title="Saturn"/>
+                                    <segment title="Earth"/>
+                                </segments>
+                                <connections>
+                                    <action selector="showImage:" destination="BYZ-38-t0r" eventType="valueChanged" id="IpX-4c-twQ"/>
+                                </connections>
+                            </segmentedControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7IR-tr-s2c">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.027450980390000001" green="0.50980392159999999" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="t6a-MO-nlh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0e2-JH-ij9"/>
+                            <constraint firstItem="7IR-tr-s2c" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ITv-E9-9Fw"/>
+                            <constraint firstAttribute="trailing" secondItem="t6a-MO-nlh" secondAttribute="trailing" id="d3F-T1-LPb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="t6a-MO-nlh" secondAttribute="bottom" id="d3v-QR-OCG"/>
+                            <constraint firstItem="7IR-tr-s2c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m4R-Oq-diz"/>
+                            <constraint firstItem="t6a-MO-nlh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tUI-cD-cZg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="t6a-MO-nlh" id="iV8-AN-dTu"/>
+                        <outlet property="segmentedControl" destination="uFQ-xR-Iyi" id="F8o-p6-waV"/>
+                        <outlet property="spinner" destination="7IR-tr-s2c" id="ISf-zG-Rnr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
+        </scene>
+    </scenes>
+</document>

@@ -21,6 +21,7 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
                      "https://www.nasa.gov/sites/default/files/thumbnails/image/pia14636-1041.jpg"]
     var images: [UIImage?] = [nil, nil, nil, nil]
     
+    
 
     // MARK: Overriden funcs
     override func viewDidLoad() {
@@ -45,6 +46,12 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
 //        delayingQueue()
         
 //        useWorkItem()
+        
+        useDispatchOnce()
+        useDispatchOnce()
+        useDispatchOnce()
+        
+        // Ще лишився один пункт - DispatchGroup!!!
     }
     
     
@@ -108,6 +115,16 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
     }
     
     
+    
+    
+    private func useDispatchOnce() {
+        // DispatchOnce isn't exist in Swift 3, because i've copied extension example from StackOverflow
+        // http://stackoverflow.com/a/38311178/5690510
+        let token = "key for smthing"
+        DispatchQueue.once(token: token, block: {
+            print("~~do smth once")
+        })
+    }
     
     private func simpleQueues() {
         // use sync
@@ -220,4 +237,31 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
         }
     }
 
+}
+
+// MARK: DispatchQueue exnension to implement dispatch_once in Swift 3
+public extension DispatchQueue {
+    
+    private static var _onceTracker = [String]()
+    
+    /**
+     Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
+     only execute the code once even in the presence of multithreaded calls.
+     
+     - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
+     - parameter block: Block to execute once
+     */
+    public class func once(token: String, block:(Void) -> Void) {
+        objc_sync_enter(self)
+        defer {
+            objc_sync_exit(self)
+        }
+        
+        if _onceTracker.contains(token) {
+            return
+        }
+        
+        _onceTracker.append(token)
+        block()
+    }
 }

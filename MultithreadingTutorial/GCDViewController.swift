@@ -47,11 +47,12 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
         
 //        useWorkItem()
         
-        useDispatchOnce()
-        useDispatchOnce()
-        useDispatchOnce()
+//        useDispatchOnce()
+//        useDispatchOnce()
+//        useDispatchOnce()
         
         // Ще лишився один пункт - DispatchGroup!!!
+        useDispatchGroup()
     }
     
     
@@ -144,7 +145,7 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
     
     private func concurrentQueues() {
         
-        var anotherQueue = DispatchQueue(label: "myAnotherQueue",
+        let anotherQueue = DispatchQueue(label: "myAnotherQueue",
                                          qos: .utility,
                                          attributes: .concurrent)
         let thirdQueue = DispatchQueue(label: "thirdQueue",
@@ -208,6 +209,38 @@ class GCDViewController: UIViewController, UICollectionViewDataSource {
                             self.printIsMainThread()
                             print("value = ", value)
         })
+    }
+    
+    
+    
+    private func useDispatchGroup() {
+        let queue = DispatchQueue(label: "dipatch group queue",
+                                  qos: .userInitiated,
+                                  attributes: .concurrent,
+                                  target: .main)
+        let group = DispatchGroup()
+        
+        queue.async {
+            print("~~first (background) execution block")
+        }
+        
+        queue.async(group: group,
+                    qos: .userInitiated,
+                    execute: {
+                        print("~~second (userInitiated) execution block")
+        })
+        
+        queue.async(group: group,
+                    qos: .utility,
+                    execute: {
+                        print("~~third (utility) execution block")
+        })
+        
+        
+        group.notify(queue: DispatchQueue.main, execute: {
+            print("~~done doing in group")
+        })
+        
     }
     
     
